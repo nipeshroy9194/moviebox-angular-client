@@ -77,7 +77,6 @@
           class="list-group-item">
         <ul [ngSwitch]="ratings">
           <li *ngSwitchCase="ratings === 'Internet Movie Database'">
-            <i class="fas fa-star"></i>
             {{ratings.Source}} - {{ratings.Value}}
           </li>
           <li *ngSwitchDefault>
