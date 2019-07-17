@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { MovieServiceClient } from './services/MovieServiceClient';
 import { MovieHomeComponent } from './movie-home/movie-home.component';
 import { MovieGridComponent } from './movie-grid/movie-grid.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieHomeComponent,
-    MovieGridComponent
+    MovieGridComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,

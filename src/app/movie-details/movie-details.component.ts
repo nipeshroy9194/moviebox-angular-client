@@ -1,0 +1,26 @@
+import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MovieServiceClient} from '../services/MovieServiceClient';
+
+@Component({
+  selector: 'app-movie-details',
+  templateUrl: './movie-details.component.html',
+  styleUrls: ['./movie-details.component.css']
+})
+export class MovieDetailsComponent implements OnInit {
+
+  constructor(private router: Router, private service: MovieServiceClient, private activatedRoute: ActivatedRoute) { }
+
+  movieId: string;
+  movieDetails;
+
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.movieId = params.get('movieId');
+      console.log(this.movieId);
+      if (this.movieId !== null) {
+        this.service.getMovieDetails(params.get('movieId')).then(movieDetails => this.movieDetails = movieDetails);
+      }
+    });
+  }
+}

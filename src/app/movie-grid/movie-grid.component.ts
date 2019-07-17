@@ -24,4 +24,8 @@ export class MovieGridComponent implements OnInit {
       }
     });
   }
+
+  showDetails(movieId) {
+    this.router.navigate(['home', movieId, 'details']);
+  }
 }

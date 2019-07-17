@@ -1,0 +1,90 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4 left">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-success">
+          <img [src]="movieDetails.Poster"/>
+        </li>
+        <li class="list-group-item">
+          <h6>Title: {{movieDetails.Title}}</h6>
+          <h6>Year: {{movieDetails.Year}}</h6>
+          <h6>Rated: {{movieDetails.Rated}}</h6>
+          <h6>Release: {{movieDetails.Released}}</h6>
+          <h6>Runtime: {{movieDetails.Runtime}}</h6>
+          <h6>Genre: {{movieDetails.Genre}}</h6>
+        </li>
+      </ul>
+    </div>
+    <div class="col-8 right">
+      <li class="list-group-item list-group-item-success">
+        <h5>Director</h5>
+      </li>
+      <li *ngFor="let director of movieDetails.Director.split(',')"
+          class="list-group-item">
+        <ul>
+          <li>{{director}}</li>
+        </ul>
+      </li>
+      <li class="list-group-item list-group-item-success">
+        <h5>Writer</h5>
+      </li>
+      <li *ngFor="let writer of movieDetails.Writer.split(',')"
+          class="list-group-item">
+        <ul>
+          <li>{{writer}}</li>
+        </ul>
+      </li>
+      <li class="list-group-item list-group-item-success">
+        <h5>Actors</h5>
+      </li>
+      <li *ngFor="let actor of movieDetails.Actors.split(',')"
+          class="list-group-item">
+        <ul>
+          <li>{{actor}}</li>
+        </ul>
+      </li>
+      <li class="list-group-item list-group-item-success">
+        <h5>Plot</h5>
+      </li>
+      <li class="list-group-item">
+        {{movieDetails.Plot}}
+      </li>
+      <li class="list-group-item list-group-item-success">
+        <h5>Languages</h5>
+      </li>
+      <li class="list-group-item">
+        {{movieDetails.Language}}
+      </li>
+      <li class="list-group-item list-group-item-success">
+        <h5>Countries</h5>
+      </li>
+      <li class="list-group-item">
+        {{movieDetails.Country}}
+      </li>
+      <li class="list-group-item list-group-item-success">
+        <h5>Awards</h5>
+      </li>
+      <li *ngFor="let awards of movieDetails.Awards.split(',')"
+          class="list-group-item">
+        <ul>
+          <li>{{awards}}</li>
+        </ul>
+      </li>
+      <li class="list-group-item list-group-item-success">
+        <h5>Ratings</h5>
+      </li>
+      <li *ngFor="let ratings of movieDetails.Ratings"
+          class="list-group-item">
+        <ul [ngSwitch]="ratings">
+          <li *ngSwitchCase="ratings === 'Internet Movie Database'">
+            <i class="fas fa-star"></i>
+            {{ratings.Source}} - {{ratings.Value}}
+          </li>
+          <li *ngSwitchDefault>
+            {{ratings.Source}} - {{ratings.Value}}
+          </li>
+        </ul>
+      </li>
+    </div>
+  </div>
+</div>
