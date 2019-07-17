@@ -1,0 +1,16 @@
+<div class="card-group">
+  <div *ngFor="let movie of movies" class="col-sm-12 col-md-4 col-lg-2 d-flex align-items-stretch">
+    <div class="card custom-card">
+      <img class="card-img-top" [src]="movie.Poster"/>
+      <div class="card-body">
+        <h5 class="card-title">
+          {{movie.Title}}
+        </h5>
+        <p class="card-text">
+          {{movie.Year}}
+        </p>
+        <button class="btn btn-lg btn-success">View Details</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <form class="form-inline">
+      <div class="form-group row">
+        <label class="col-form-label" style="font-size: large; color: white"> Search For Movies </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input (keyup)="getInput($event)" type="text" class="form-control">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button (click)="searchMovies()" class="btn btn-success btn-md">Search</button>
+      </div>
+    </form>
+    <app-movie-grid></app-movie-grid>
+</div>
