@@ -28,4 +28,8 @@ export class MovieGridComponent implements OnInit {
   showDetails(movieId) {
     this.router.navigate(['home', movieId, 'details']);
   }
+
+  brokenImage(event) {
+    event.target.src = '../assets/images/no_image_available.jpeg';
+  }
 }

@@ -23,4 +23,8 @@ export class MovieDetailsComponent implements OnInit {
       }
     });
   }
+
+  brokenImage(event) {
+    event.target.src = '../assets/images/no_image_available.jpeg';
+  }
 }
