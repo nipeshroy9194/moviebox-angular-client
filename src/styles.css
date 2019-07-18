@@ -7,7 +7,7 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("assets\images\download.jpg");
+  background-image: url("assets\images\download.png");
   background-color: rgba(255, 255, 255, 0.5);
   background-size: cover;
   background-repeat: no-repeat;
@@ -82,4 +82,8 @@ img {
 
 .list-group-item.active a {
   color: white;
+}
+
+.card{
+  margin-bottom: 10px;
 }
