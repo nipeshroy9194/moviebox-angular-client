@@ -6,6 +6,9 @@
   2. Kumar Baibhav
 
 ### MovieBOX - Rent Movies:
+**Deployed Heroku Link** -> https://moviebox-angular-client.herokuapp.com/
+
+
 `Public API used :`
 
 OMDB(The Open Movie Database) -> https://www.omdbapi.com
