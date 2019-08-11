@@ -23,6 +23,6 @@ export class MovieRecentlyRentedComponent implements OnInit {
   }
 
   showDetails(movieId) {
-    this.router.navigate(['home', movieId, 'details']);
+    this.router.navigate(['home', 'details', movieId]);
   }
 }

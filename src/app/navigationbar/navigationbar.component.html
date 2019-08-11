@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+  <img class="navbar-brand" src="../assets/images/movieboxlogo.png"
+       alt="#" style="width: 100px; height: 100px">
+  <button class="navbar-toggler" type="button" (click)="navbarCollapsed = !navbarCollapsed"
+          [attr.aria-expanded]="!navbarCollapsed" aria-controls="navbarContent"
+          aria-expanded="false" aria-label="Toggle navigation" data-target="#navbarContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" [ngbCollapse]="navbarCollapsed" id="navbarContent">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item" [ngClass]="{'active': this.router.url === '/home'}">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active-link">Home</a>
+      </li>
+      <li class="nav-item" [ngClass]="{'active': this.router.url === '/home/movies'}">
+        <a class="nav-link" href="#">Movies</a>
+      </li>
+      <li class="nav-item" [ngClass]="{'active': this.router.url === '/home/tvshows'}">
+        <a class="nav-link" href="#">TV Shows</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item" [ngClass]="{'active': this.router.url === '/home/register'}">
+        <a class="nav-link" routerLink="/home/register" routerLinkActive="active-link">Sign Up</a>
+      </li>
+      <li class="nav-item" [ngClass]="{'active': this.router.url === '/home/login'}">
+        <a routerLink="/home/login" class="nav-link" routerLinkActive="active-link">Sign In</a>
+      </li>
+    </ul>
+    <form class="form-inline">
+      <div class="md-form my-0">
+        <input (keyup)="getInput($event)"
+               id="searchInput"
+               type="search"
+               class="form-control mr-sm-2"
+               placeholder="Find movies, TV Shows">
+        <button (click)="searchMovies()" class="form-control btn btn-success btn-md mr-sm-2">
+          Search
+        </button>
+      </div>
+    </form>
+  </div>
+</nav>

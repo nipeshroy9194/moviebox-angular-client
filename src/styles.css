@@ -36,31 +36,6 @@ h4{
   color: white;
 }
 
-.nav-tabs > li > a{
-  color: black;
-}
-
-.nav-pills > li > a {
-  color: black;
-}
-
-.nav-tabs{
-  background-color: white;
-}
-
-.nav-pills {
-  background-color: white;
-}
-
-.nav-item.active {
-  background-color: #2196f3;
-  border-color: #2196f3;
-}
-
-.nav-tabs > li > a.active{
-  color: black;
-}
-
 img {
   height: 100%;
   width: 100%;
@@ -78,10 +53,6 @@ img {
 
 .custom-card {
   width: 18rem;
-}
-
-.list-group-item.active a {
-  color: white;
 }
 
 .card{

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MovieServiceClient} from '../services/MovieServiceClient';
 
@@ -9,7 +9,9 @@ import {MovieServiceClient} from '../services/MovieServiceClient';
 })
 export class MovieGridComponent implements OnInit {
 
-  constructor(private router: Router, private service: MovieServiceClient, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router,
+              private service: MovieServiceClient,
+              private activatedRoute: ActivatedRoute) { }
 
   searchParam: string;
   movies: [];
@@ -26,7 +28,7 @@ export class MovieGridComponent implements OnInit {
   }
 
   showDetails(movieId) {
-    this.router.navigate(['home', movieId, 'details']);
+    this.router.navigate(['home', 'details', movieId]);
   }
 
   brokenImage(event) {

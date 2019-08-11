@@ -1,18 +1,8 @@
 <div class="container-fluid">
-  <div class="row">
-    <input (keyup)="getInput($event)"
-           id="searchInput"
-           type="search"
-           class="form-control col-10"
-           placeholder="Find movies, TV Shows, etc ...">
-    <button (click)="searchMovies()" class="btn btn-success btn-md col-2">
-      Search
-    </button>
-  </div>
-  <br/>
+  <app-navigationbar>
+  </app-navigationbar>
   <app-movie-grid>
   </app-movie-grid>
-  <br/>
   <app-movie-recently-rented>
   </app-movie-recently-rented>
 </div>
