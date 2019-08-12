@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
       console.log(this.userAuthentication.user);
       this.router.navigate(['profile', this.userAuthentication.user.userId]);
     }).catch(error => {
-      window.alert('Unable to update Profile successfully');
+      window.alert('Unable to register successfully');
     });
   }
 }

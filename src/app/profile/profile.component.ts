@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
         console.log(this.userAuthentication.user);
         this.router.navigate(['profile', this.userAuthentication.user.userId]);
       }).catch(error => {
-        window.alert('Unable to register successfully');
+        window.alert('Unable to update prcfile successfully');
       });
     } else {
       window.alert('Please Changes some Profile value to update');
