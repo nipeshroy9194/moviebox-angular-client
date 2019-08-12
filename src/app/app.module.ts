@@ -16,6 +16,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserServiceClient } from './services/UserServiceClient';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuardServiceClient } from './services/AuthGuardServiceClient';
+import { AdminManageUsersComponent } from './admin-manage-users/admin-manage-users.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { ProfileComponent } from './profile/profile.component';
     NavigationbarComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminManageUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,7 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     ShowHidePasswordModule
   ],
-  providers: [MovieServiceClient, UserServiceClient],
+  providers: [MovieServiceClient, UserServiceClient, AuthGuardServiceClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -70,7 +70,6 @@ export class ProfileComponent implements OnInit {
         this.userAuthentication.findUserById(this.userId).then(response => {
           this.userAuthentication.user = response;
           this.currentUser = this.userAuthentication.user;
-          console.log(this.userAuthentication.user);
           this.router.navigate(['profile', this.userId]);
           window.alert('Profile updated successfully');
         });

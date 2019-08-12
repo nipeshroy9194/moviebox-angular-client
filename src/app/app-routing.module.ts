@@ -6,6 +6,8 @@ import {MovieRecentlyRentedComponent} from './movie-recently-rented/movie-recent
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
+import {AdminManageUsersComponent} from './admin-manage-users/admin-manage-users.component';
+import {AuthGuardServiceClient} from './services/AuthGuardServiceClient';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -16,7 +18,8 @@ const routes: Routes = [
   {path: 'details/:movieId', component: MovieDetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile/:userId', component: ProfileComponent}
+  {path: 'profile/:userId', component: ProfileComponent},
+  {path: 'users', component: AdminManageUsersComponent, canActivate:[AuthGuardServiceClient]}
 ];
 
 @NgModule({

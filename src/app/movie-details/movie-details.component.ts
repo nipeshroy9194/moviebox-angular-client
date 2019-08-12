@@ -24,6 +24,9 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
+  addToCart(movieDetails) {
+  }
+
   brokenImage(event) {
     event.target.src = '../assets/images/no_image_available.jpeg';
   }

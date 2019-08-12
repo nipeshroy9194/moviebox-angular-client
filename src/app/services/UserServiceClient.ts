@@ -39,12 +39,17 @@ export class UserServiceClient {
     }).then(response => response.status, error => error.status)
 
   createUser = (newUser) =>
-    fetch(' http://localhost:3000/api/users', {
+    fetch('http://localhost:3000/api/users', {
       method: 'POST',
       body: JSON.stringify(newUser),
       credentials: 'include',
       headers: {
         'content-type': 'application/json'
       }
+    }).then(response => response.json(), error => error.status)
+
+  findAllUsers = () =>
+    fetch('http://localhost:3000/api/users', {
+      credentials: 'include',
     }).then(response => response.json(), error => error.status)
 }

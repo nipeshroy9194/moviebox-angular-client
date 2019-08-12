@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-lg-12 center">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-success">
+          <h6>Registered Users</h6>
+        </li>
+        <li class="list-group-item" *ngFor="let user of allUsers">
+          <label>Username</label>
+          <h6>{{user.userName}}</h6>
+          <label>First Name</label>
+          <h6>{{user.firstName}}</h6>
+          <label>Last Name</label>
+          <h6>{{user.lastName}}</h6>
+          <label>User Type</label>
+          <h6>{{user.type}}</h6>
+          <label class="form-control btn btn-success btn-md" (click)="deleteUser(user._id)">
+            Delete User</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

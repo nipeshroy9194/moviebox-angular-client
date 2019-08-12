@@ -30,18 +30,21 @@ export class NavigationbarComponent implements OnInit {
     }
   }
 
-  gotoProfile() {
-    this.router.navigate(['profile', this.userAuthentication.user.userId]);
+  gotoProfile(user) {
+    this.router.navigate(['profile', user._id]);
   }
 
   userLogout() {
     this.userAuthentication.userLogout().then(res => {
       this.userAuthentication.user = null;
-      console.log(this.userAuthentication.user);
       this.router.navigate(['home']);
       window.alert('User Logged out successfully');
     }).catch(error => {
       window.alert('Unable to Logout Successfully');
     });
+  }
+
+  adminManageUsers() {
+    this.router.navigate(['users']);
   }
 }

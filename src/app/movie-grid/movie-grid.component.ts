@@ -19,7 +19,6 @@ export class MovieGridComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
       this.searchParam = params.get('searchParam');
-      console.log(this.searchParam);
       if (this.searchParam !== null) {
         this.service.getSearchMovies(params.get('searchParam')).then(movies => this.movies = movies.Search);
         console.log(this.movies);

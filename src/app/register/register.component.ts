@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {UserServiceClient} from '../services/UserServiceClient';
 
 @Component({
@@ -49,7 +49,6 @@ export class RegisterComponent implements OnInit {
 
     this.userAuthentication.createUser(newUser).then(res => {
       this.userAuthentication.user = res;
-      console.log('User :', this.userAuthentication.user);
       this.router.navigate(['login']);
       window.alert('User Registered Successfully');
     });
