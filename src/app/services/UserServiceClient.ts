@@ -36,7 +36,7 @@ export class UserServiceClient {
       headers: {
         'content-type': 'application/json'
       }
-    }).then(response => response.json(), error => error.status)
+    }).then(response => response.status, error => error.status)
 
   createUser = (newUser) =>
     fetch(' http://localhost:3000/api/users', {

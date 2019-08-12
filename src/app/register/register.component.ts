@@ -44,14 +44,14 @@ export class RegisterComponent implements OnInit {
       password: this.f.password.value,
       firstName: this.f.firstName.value,
       lastName: this.f.lastName.value,
+      type: 'USER'
     };
 
     this.userAuthentication.createUser(newUser).then(res => {
       this.userAuthentication.user = res;
-      console.log(this.userAuthentication.user);
-      this.router.navigate(['profile', this.userAuthentication.user.userId]);
-    }).catch(error => {
-      window.alert('Unable to register successfully');
+      console.log('User :', this.userAuthentication.user);
+      this.router.navigate(['login']);
+      window.alert('User Registered Successfully');
     });
   }
 }

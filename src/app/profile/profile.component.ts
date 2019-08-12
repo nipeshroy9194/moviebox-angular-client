@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserServiceClient} from '../services/UserServiceClient';
@@ -67,9 +67,13 @@ export class ProfileComponent implements OnInit {
       };
 
       this.userAuthentication.updateUser(this.userId, updateUser).then(res => {
-        this.userAuthentication.user = res;
-        console.log(this.userAuthentication.user);
-        this.router.navigate(['profile', this.userAuthentication.user.userId]);
+        this.userAuthentication.findUserById(this.userId).then(response => {
+          this.userAuthentication.user = response;
+          this.currentUser = this.userAuthentication.user;
+          console.log(this.userAuthentication.user);
+          this.router.navigate(['profile', this.userId]);
+          window.alert('Profile updated successfully');
+        });
       }).catch(error => {
         window.alert('Unable to update prcfile successfully');
       });
