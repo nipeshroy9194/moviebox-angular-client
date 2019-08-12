@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+
 @Injectable()
 export class UserServiceClient {
-  user;
+  user = null;
 
   login = (loginCredentials) =>
     fetch(' http://localhost:3000/api/user-login', {
       method: 'POST',
       body: JSON.stringify(loginCredentials),
       credentials: 'include',
-      headers : {
+      headers: {
         'content-type': 'application/json'
-      }}).then(response => response.json(), error => error.status)
+      }
+    }).then(response => response.json(), error => error.status)
 
   findUserById = (userId) =>
     fetch('http://localhost:3000/api/user/' + `${userId}`,
@@ -18,4 +20,31 @@ export class UserServiceClient {
         credentials: 'include'
       })
       .then(response => response.json(), error => error.status)
+
+  userLogout = () =>
+    fetch('http://localhost:3000/api/user-logout',
+      {
+        credentials: 'include'
+      })
+      .then(response => response.status, error => error.status)
+
+  updateUser = (userId, updatedUser) =>
+    fetch('http://localhost:3000/api/user/' + `${userId}`, {
+      method: 'PUT',
+      body: JSON.stringify(updatedUser),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => response.json(), error => error.status)
+
+  createUser = (newUser) =>
+    fetch(' http://localhost:3000/api/users', {
+      method: 'POST',
+      body: JSON.stringify(newUser),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => response.json(), error => error.status)
 }

@@ -2,24 +2,41 @@
   <div id="bg-caption">
     <div class="container">
       <h2 class="text-center">Profile</h2>
-      <form class="justify-content-center">
-        <div class="form-group row">
-          <label for="username"
-                 class="col-sm-2 col-form-label">
-            FirstName </label>
-          <div class="col-sm-10">
-            <input class="form-control"
-                    value = 'user.firstName'>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" formControlName="username" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && formget.username.errors }" readonly/>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+            <input type="password" formControlName="password" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && formget.password.errors }"/>
+          </show-hide-password>
+          <div *ngIf="submitted && formget.password.errors" class="invalid-feedback">
+            <div *ngIf="formget.password.errors.required">Password is required</div>
           </div>
         </div>
-        <div class="form-group row">
-          <label for="username"
-                 class="col-sm-2 col-form-label">
-            LastName </label>
-          <div class="col-sm-10">
-            <input class="form-control"
-                   readonly>
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" formControlName="firstName" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && formget.firstName.errors }"/>
+          <div *ngIf="submitted && formget.firstName.errors" class="invalid-feedback">
+            <div *ngIf="formget.firstName.errors.required">First Name is required</div>
           </div>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" formControlName="lastName" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && formget.lastName.errors }"/>
+          <div *ngIf="submitted && formget.lastName.errors" class="invalid-feedback">
+            <div *ngIf="formget.lastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Update Profile</button>
+          <a routerLink="/home" class="btn btn-link">Home</a>
         </div>
       </form>
     </div>

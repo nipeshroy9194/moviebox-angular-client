@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {UserServiceClient} from '../services/UserServiceClient';
 
 @Component({
   selector: 'app-register',
@@ -14,20 +15,43 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private userAuthentication: UserServiceClient) {
+  }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(5)]]
     });
   }
 
-  get f() { return this.registerForm.controls; }
+  get f() {
+    return this.registerForm.controls;
+  }
 
   onSubmit() {
+    this.submitted = true;
 
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    const newUser = {
+      userName: this.f.username.value,
+      password: this.f.password.value,
+      firstName: this.f.firstName.value,
+      lastName: this.f.lastName.value,
+    };
+
+    this.userAuthentication.createUser(newUser).then(res => {
+      this.userAuthentication.user = res;
+      console.log(this.userAuthentication.user);
+      this.router.navigate(['profile', this.userAuthentication.user.userId]);
+    }).catch(error => {
+      window.alert('Unable to update Profile successfully');
+    });
   }
 }

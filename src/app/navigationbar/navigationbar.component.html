@@ -19,11 +19,17 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item" [ngClass]="{'active': this.router.url === '/register'}">
+      <li class="nav-item" *ngIf="userAuthentication.user === null" [ngClass]="{'active': this.router.url === '/register'}">
         <a class="nav-link" routerLink="/register" routerLinkActive="active-link">Sign Up</a>
       </li>
-      <li class="nav-item" [ngClass]="{'active': this.router.url === '/login'}">
+      <li class="nav-item" *ngIf="userAuthentication.user === null" [ngClass]="{'active': this.router.url === '/login'}">
         <a routerLink="/login" class="nav-link" routerLinkActive="active-link">Sign In</a>
+      </li>
+      <li class="nav-item"  *ngIf="userAuthentication.user !== null" [ngClass]="{'active': this.router.url.includes('/profile')}">
+        <a (click)= gotoProfile() class="nav-link" routerLinkActive="active-link">My Account</a>
+      </li>
+      <li class="nav-item"  *ngIf="userAuthentication.user !== null">
+        <a (click)= userLogout() class="nav-link" routerLinkActive="active-link">Log Out</a>
       </li>
     </ul>
     <form class="form-inline">
