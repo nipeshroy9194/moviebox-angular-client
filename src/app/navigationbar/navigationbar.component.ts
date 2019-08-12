@@ -7,10 +7,10 @@ import {Router} from '@angular/router';
   styleUrls: ['./navigationbar.component.css']
 })
 export class NavigationbarComponent implements OnInit {
-  constructor(private router: Router) { }
-
   navbarCollapsed = true;
-  searchParam;
+  searchParam = '';
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,6 +21,10 @@ export class NavigationbarComponent implements OnInit {
   }
 
   searchMovies() {
-    this.router.navigate(['home', 'search', this.searchParam]);
+    if (this.searchParam !== '') {
+      this.router.navigate(['search', this.searchParam]);
+    } else {
+      this.router.navigate(['search']);
+    }
   }
 }

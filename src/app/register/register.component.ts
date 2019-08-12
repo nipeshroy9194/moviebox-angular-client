@@ -10,7 +10,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-  loading = false;
   submitted = false;
 
   constructor(

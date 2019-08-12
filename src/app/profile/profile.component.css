@@ -1,0 +1,32 @@
+html,
+body{
+  height: 100%;
+  font-family: sans-serif;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.container {
+  background: rgb(255, 255, 255); /* The Fallback */
+  background: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  padding: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+}
+
+label {
+  font-weight: bold;
+}
+
+#bg-caption {
+  width: 100%;
+}
+
+h2{
+  color: black;
+}

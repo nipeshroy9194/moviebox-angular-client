@@ -22,7 +22,7 @@
       <li *ngFor="let director of movieDetails.Director.split(',')"
           class="list-group-item">
         <ul>
-          <li>{{director}}</li>
+          <li *ngIf="director !== undefined">{{director}}</li>
         </ul>
       </li>
       <li class="list-group-item list-group-item-success">

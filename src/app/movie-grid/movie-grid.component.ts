@@ -28,7 +28,7 @@ export class MovieGridComponent implements OnInit {
   }
 
   showDetails(movieId) {
-    this.router.navigate(['home', 'details', movieId]);
+    this.router.navigate(['details', movieId]);
   }
 
   brokenImage(event) {

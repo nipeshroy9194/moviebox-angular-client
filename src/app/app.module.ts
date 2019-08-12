@@ -13,6 +13,8 @@ import { MovieRecentlyRentedComponent } from './movie-recently-rented/movie-rece
 import { NavigationbarComponent } from './navigationbar/navigationbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UserServiceClient } from './services/UserServiceClient';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { RegisterComponent } from './register/register.component';
     MovieRecentlyRentedComponent,
     NavigationbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [MovieServiceClient],
+  providers: [MovieServiceClient, UserServiceClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
