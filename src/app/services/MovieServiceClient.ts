@@ -10,4 +10,15 @@ export class MovieServiceClient {
     fetch('http://localhost:3000/api/movie-detail/' + `${movieId}`, {
       credentials: 'include',
     }).then(response => response.json())
+
+  getNewReleases = () =>
+    fetch('http://localhost:3000/api/movie-new-releases/', {
+      credentials: 'include',
+    }).then(response => response.json())
+
+  getPopularMovies = () =>
+    fetch('http://localhost:3000/api/popular-movies/', {
+      credentials: 'include',
+    }).then(response => response.json())
+
 }

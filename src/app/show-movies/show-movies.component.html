@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="container-fluid row">
+      <br/>
+      <h4>Upcoming Releases</h4>
+    </div>
+    <div class="card-group">
+      <div *ngFor="let movie of upcomingMovies | slice:0:12; let i=index" class="col-sm-12 col-md-4 col-lg-2 d-flex align-items-stretch">
+        <div class="card custom-card">
+          <div class="card-header">
+            <button class="btn btn-sm btn-success" (click)="addToCart()">Rent Now - 5.99$</button>
+          </div>
+          <img class="card-img-top image img-fluid" [src]="'http://image.tmdb.org/t/p/w342//' + movie.poster_path"
+               (error)="brokenImage($event)"/>
+          <div class="card-body middle">
+            <h5 class="card-title">
+              {{movie.title}}
+            </h5>
+            <p class="card-text">
+              {{movie.release_date}}
+            </p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-success" (click)="showDetails(movie.id)">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container-fluid row">
+      <br/>
+      <h4>Popular Movies</h4>
+    </div>
+    <div class="card-group">
+      <div *ngFor="let movie of popularMovies | slice:0:12; let i=index" class="col-sm-12 col-md-4 col-lg-2 d-flex align-items-stretch">
+        <div class="card custom-card">
+          <div class="card-header">
+            <button class="btn btn-sm btn-success" (click)="addToCart()">Rent Now - 5.99$</button>
+          </div>
+          <img class="card-img-top image img-fluid" [src]="'http://image.tmdb.org/t/p/w342//' + movie.poster_path"
+               (error)="brokenImage($event)"/>
+          <div class="card-body middle">
+            <h5 class="card-title">
+              {{movie.title}}
+            </h5>
+            <p class="card-text">
+              {{movie.release_date}}
+            </p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-success" (click)="showDetails(movie.id)">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

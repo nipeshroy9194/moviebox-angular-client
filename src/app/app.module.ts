@@ -21,6 +21,7 @@ import { AdminManageUsersComponent } from './admin-manage-users/admin-manage-use
 import { SafePipe } from './safe.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { EmbedVideo } from 'ngx-embed-video';
+import { ShowMoviesComponent } from './show-movies/show-movies.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EmbedVideo } from 'ngx-embed-video';
     RegisterComponent,
     ProfileComponent,
     AdminManageUsersComponent,
-    SafePipe
+    SafePipe,
+    ShowMoviesComponent,
   ],
   imports: [
     BrowserModule,

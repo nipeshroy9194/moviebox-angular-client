@@ -8,6 +8,7 @@ import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AdminManageUsersComponent} from './admin-manage-users/admin-manage-users.component';
 import {AuthGuardServiceClient} from './services/AuthGuardServiceClient';
+import {ShowMoviesComponent} from './show-movies/show-movies.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile/:userId', component: ProfileComponent},
-  {path: 'users', component: AdminManageUsersComponent, canActivate: [AuthGuardServiceClient]}
+  {path: 'users', component: AdminManageUsersComponent, canActivate: [AuthGuardServiceClient]},
+  {path: 'movies', component: ShowMoviesComponent},
 ];
 
 @NgModule({

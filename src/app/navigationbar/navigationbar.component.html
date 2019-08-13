@@ -11,21 +11,21 @@
       <li class="nav-item" [ngClass]="{'active': this.router.url === '/home'}">
         <a class="nav-link" routerLink="/home" routerLinkActive="active-link">Home</a>
       </li>
-      <li class="nav-item" [ngClass]="{'active': this.router.url === '/home/movies'}">
-        <a class="nav-link" href="#">Movies</a>
-      </li>
-      <li class="nav-item" [ngClass]="{'active': this.router.url === '/home/tvshows'}">
-        <a class="nav-link" href="#">TV Shows</a>
+      <li class="nav-item" [ngClass]="{'active': this.router.url === '/movies'}">
+        <a class="nav-link" routerLink="/movies" routerLinkActive="active-link">Movies</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item" *ngIf="userAuthentication.user === null" [ngClass]="{'active': this.router.url === '/register'}">
+      <li class="nav-item" *ngIf="userAuthentication.user === null"
+          [ngClass]="{'active': this.router.url === '/register'}">
         <a class="nav-link" routerLink="/register" routerLinkActive="active-link">Sign Up</a>
       </li>
-      <li class="nav-item" *ngIf="userAuthentication.user === null" [ngClass]="{'active': this.router.url === '/login'}">
+      <li class="nav-item" *ngIf="userAuthentication.user === null"
+          [ngClass]="{'active': this.router.url === '/login'}">
         <a routerLink="/login" class="nav-link" routerLinkActive="active-link">Sign In</a>
       </li>
-      <li class="nav-item"  *ngIf="userAuthentication.user !== null" [ngClass]="{'active': this.router.url.includes('/profile')}">
+      <li class="nav-item"  *ngIf="userAuthentication.user !== null"
+          [ngClass]="{'active': this.router.url.includes('/profile')}">
         <a (click)= gotoProfile(userAuthentication.user) class="nav-link" routerLinkActive="active-link">My Account</a>
       </li>
       <li class="nav-item" *ngIf="userAuthentication.user !== null && userAuthentication.user.type === 'ADMIN'"
