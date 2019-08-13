@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MovieServiceClient} from '../services/MovieServiceClient';
+import {EmbedVideoService} from 'ngx-embed-video';
 
 @Component({
   selector: 'app-movie-details',
@@ -9,7 +10,11 @@ import {MovieServiceClient} from '../services/MovieServiceClient';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  constructor(private router: Router, private service: MovieServiceClient, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router,
+              private service: MovieServiceClient,
+              private activatedRoute: ActivatedRoute,
+              private embedService: EmbedVideoService) {
+  }
 
   movieId: string;
   movieDetails;
@@ -19,9 +24,16 @@ export class MovieDetailsComponent implements OnInit {
       this.movieId = params.get('movieId');
       console.log(this.movieId);
       if (this.movieId !== null) {
-        this.service.getMovieDetails(params.get('movieId')).then(movieDetails => this.movieDetails = movieDetails);
+        this.service.getMovieDetails(params.get('movieId')).
+        then(movieDetails => this.movieDetails = movieDetails);
       }
     });
+  }
+
+  embedYoutubeLink(youTubeLink) {
+    const temp = this.embedService.embed(youTubeLink);
+    console.log(temp);
+    return temp;
   }
 
   addToCart(movieDetails) {

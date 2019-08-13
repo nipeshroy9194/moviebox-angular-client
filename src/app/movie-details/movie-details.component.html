@@ -1,90 +1,97 @@
-<div class="container-fluid">
+<div class="container-fluid"
+     [style.backgroundImage]="'url(http://image.tmdb.org/t/p/w780//'+ movieDetails.backdrop_path +')'"
+     [style.backgroundSize]="'auto 100%'">
   <div class="row">
     <div class="col-xs-4 col-lg-4 left">
       <ul class="list-group">
         <li class="list-group-item list-group-item-success">
-          <img [src]="movieDetails.Poster" class="img-responsive" (error)="brokenImage($event)">
+          <img [src]="'http://image.tmdb.org/t/p/w500//' + movieDetails.poster_path" class="img-responsive"
+               (error)="brokenImage($event)">
         </li>
         <li class="list-group-item">
-          <h6>Title: {{movieDetails.Title}}</h6>
-          <h6>Year: {{movieDetails.Year}}</h6>
-          <h6>Rated: {{movieDetails.Rated}}</h6>
-          <h6>Release: {{movieDetails.Released}}</h6>
-          <h6>Runtime: {{movieDetails.Runtime}}</h6>
-          <h6>Genre: {{movieDetails.Genre}}</h6>
+          <h6>Title: {{movieDetails.original_title}}</h6>
+          <h6>Release Date: {{movieDetails.release_date}}</h6>
+          <h6>Runtime: {{movieDetails.runtime}} mins</h6>
+          <h6>User Rating: {{movieDetails.vote_average}}/10</h6>
           <button class="form-control btn btn-success btn-md" (click)="addToCart(movieDetails)">
             Rent Now - 5.99$</button>
         </li>
       </ul>
     </div>
-    <div class="col-xs-8  col-lg-8 right">
+    <div class="col-xs-8  col-lg-8 right custom-class">
       <li class="list-group-item list-group-item-success">
-        <h5>Director</h5>
+        <h5>Cast</h5>
       </li>
-      <li *ngFor="let director of movieDetails.Director.split(',')"
+      <li *ngFor="let cast of movieDetails.credits.cast | slice:0:5; let i=index"
           class="list-group-item">
         <ul>
-          <li *ngIf="director !== undefined">{{director}}</li>
-        </ul>
-      </li>
-      <li class="list-group-item list-group-item-success">
-        <h5>Writer</h5>
-      </li>
-      <li *ngFor="let writer of movieDetails.Writer.split(',')"
-          class="list-group-item">
-        <ul>
-          <li>{{writer}}</li>
-        </ul>
-      </li>
-      <li class="list-group-item list-group-item-success">
-        <h5>Actors</h5>
-      </li>
-      <li *ngFor="let actor of movieDetails.Actors.split(',')"
-          class="list-group-item">
-        <ul>
-          <li>{{actor}}</li>
+          <li>{{cast.name}}</li>
         </ul>
       </li>
       <li class="list-group-item list-group-item-success">
         <h5>Plot</h5>
       </li>
       <li class="list-group-item">
-        {{movieDetails.Plot}}
+        {{movieDetails.overview}}
+      </li>
+      <li *ngIf="movieDetails.tagline !== null && movieDetails.tagline !== ''"
+          class="list-group-item list-group-item-success">
+        <h5>Tagline</h5>
+      </li>
+      <li *ngIf="movieDetails.tagline !== null && movieDetails.tagline !== ''" class="list-group-item">
+        {{movieDetails.tagline}}
       </li>
       <li class="list-group-item list-group-item-success">
-        <h5>Languages</h5>
+        <h5>Genre</h5>
       </li>
-      <li class="list-group-item">
-        {{movieDetails.Language}}
-      </li>
-      <li class="list-group-item list-group-item-success">
-        <h5>Countries</h5>
-      </li>
-      <li class="list-group-item">
-        {{movieDetails.Country}}
-      </li>
-      <li class="list-group-item list-group-item-success">
-        <h5>Awards</h5>
-      </li>
-      <li *ngFor="let awards of movieDetails.Awards.split(',')"
+      <li *ngFor="let genre of movieDetails.genres"
           class="list-group-item">
         <ul>
-          <li>{{awards}}</li>
+          <li *ngIf="genre !== undefined">{{genre.name}}</li>
         </ul>
       </li>
-      <li class="list-group-item list-group-item-success">
-        <h5>Ratings</h5>
+      <li *ngIf="movieDetails.production_companies.length !== 0"
+        class="list-group-item list-group-item-success">
+        <h5>Production Companies</h5>
       </li>
-      <li *ngFor="let ratings of movieDetails.Ratings"
+      <li *ngFor="let companies of movieDetails.production_companies"
           class="list-group-item">
-        <ul [ngSwitch]="ratings">
-          <li *ngSwitchCase="ratings === 'Internet Movie Database'">
-            {{ratings.Source}} - {{ratings.Value}}
-          </li>
-          <li *ngSwitchDefault>
-            {{ratings.Source}} - {{ratings.Value}}
-          </li>
+        <ul *ngIf="movieDetails.production_companies.length !== 0">
+          <li>{{companies.name}}</li>
         </ul>
+      </li>
+      <li *ngIf="movieDetails.production_countries.length !== 0"
+          class="list-group-item list-group-item-success">
+        <h5>Production Countries</h5>
+      </li>
+      <li *ngFor="let countries of movieDetails.production_countries"
+          class="list-group-item">
+        <ul *ngIf="movieDetails.production_countries.length !== 0">
+          <li>{{countries.name}}</li>
+        </ul>
+      </li>
+      <li *ngIf="movieDetails.homepage !== null" class="list-group-item list-group-item-success">
+        <h5>Homepage</h5>
+      </li>
+      <li *ngIf="movieDetails.homepage !== null" class="list-group-item">
+        <a>{{movieDetails.homepage}}</a>
+      </li>
+      <li *ngIf="movieDetails.spoken_languages.length !== 0"
+          class="list-group-item list-group-item-success">
+        <h5>Spoken Languages</h5>
+      </li>
+      <li *ngFor="let languages of movieDetails.spoken_languages"
+          class="list-group-item">
+        <ul *ngIf="movieDetails.spoken_languages.length !== 0">
+          <li>{{languages.name}}</li>
+        </ul>
+      </li>
+      <li *ngIf="movieDetails.videos.results.length !== 0" class="list-group-item list-group-item-success">
+        <h5>Trailer</h5>
+      </li>
+      <li class="list-group-item" *ngFor="let video of movieDetails.videos.results">
+        <div *ngIf="video.site === 'YouTube'"
+             [innerHtml]="embedYoutubeLink('https://www.youtube.com/embed/watch?v=' + video.key)"></div>
       </li>
     </div>
   </div>

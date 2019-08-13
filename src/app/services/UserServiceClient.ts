@@ -4,6 +4,10 @@ import {Injectable} from '@angular/core';
 export class UserServiceClient {
   user = null;
 
+  constructor() {
+    this.user = JSON.parse(window.localStorage.getItem('user'));
+  }
+
   login = (loginCredentials) =>
     fetch(' http://localhost:3000/api/user-login', {
       method: 'POST',
@@ -52,4 +56,10 @@ export class UserServiceClient {
     fetch('http://localhost:3000/api/users', {
       credentials: 'include',
     }).then(response => response.json(), error => error.status)
+
+  deleteUser = (userId) =>
+    fetch('http://localhost:3000/api/user/' + `${userId}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    }).then(response => response.status, error => error.status)
 }

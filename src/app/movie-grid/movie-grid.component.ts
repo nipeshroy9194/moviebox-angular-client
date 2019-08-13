@@ -20,8 +20,9 @@ export class MovieGridComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       this.searchParam = params.get('searchParam');
       if (this.searchParam !== null) {
-        this.service.getSearchMovies(params.get('searchParam')).then(movies => this.movies = movies.Search);
-        console.log(this.movies);
+        this.service.getSearchMovies(params.get('searchParam'))
+          .then(movies => this.movies = movies.results)
+          .catch(error => window.alert('The TMDB API is currently down'));
       }
     });
   }

@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile/:userId', component: ProfileComponent},
-  {path: 'users', component: AdminManageUsersComponent, canActivate:[AuthGuardServiceClient]}
+  {path: 'users', component: AdminManageUsersComponent, canActivate: [AuthGuardServiceClient]}
 ];
 
 @NgModule({

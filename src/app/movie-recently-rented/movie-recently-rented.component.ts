@@ -15,7 +15,9 @@ export class MovieRecentlyRentedComponent implements OnInit {
 
   ngOnInit() {
     // Replace this to get info of the Recently rented movieId's from the database
-    this.service.getSearchMovies('superman').then(movies => this.recentlyRentedMovies = movies.Search);
+    this.service.getSearchMovies('superman')
+      .then(movies => this.recentlyRentedMovies = movies.results)
+      .catch(error => window.alert('The TMDB API is currently down'));
   }
 
   brokenImage(event) {

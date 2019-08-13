@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
       this.userId = params.get('userId');
       this.userAuthentication.findUserById(this.userId).then(response => {
         this.userAuthentication.user = response;
+        window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
         this.currentUser = response;
         this.formset(this.currentUser);
       });
@@ -69,6 +70,7 @@ export class ProfileComponent implements OnInit {
       this.userAuthentication.updateUser(this.userId, updateUser).then(res => {
         this.userAuthentication.findUserById(this.userId).then(response => {
           this.userAuthentication.user = response;
+          window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
           this.currentUser = this.userAuthentication.user;
           this.router.navigate(['profile', this.userId]);
           window.alert('Profile updated successfully');

@@ -37,6 +37,7 @@ export class NavigationbarComponent implements OnInit {
   userLogout() {
     this.userAuthentication.userLogout().then(res => {
       this.userAuthentication.user = null;
+      window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
       this.router.navigate(['home']);
       window.alert('User Logged out successfully');
     }).catch(error => {

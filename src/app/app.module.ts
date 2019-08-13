@@ -18,6 +18,9 @@ import { UserServiceClient } from './services/UserServiceClient';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardServiceClient } from './services/AuthGuardServiceClient';
 import { AdminManageUsersComponent } from './admin-manage-users/admin-manage-users.component';
+import { SafePipe } from './safe.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { EmbedVideo } from 'ngx-embed-video';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { AdminManageUsersComponent } from './admin-manage-users/admin-manage-use
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    AdminManageUsersComponent
+    AdminManageUsersComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,9 @@ import { AdminManageUsersComponent } from './admin-manage-users/admin-manage-use
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    ShowHidePasswordModule
+    ShowHidePasswordModule,
+    HttpClientModule,
+    EmbedVideo
   ],
   providers: [MovieServiceClient, UserServiceClient, AuthGuardServiceClient],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MovieServiceClient} from '../services/MovieServiceClient';
 import {UserServiceClient} from '../services/UserServiceClient';
@@ -13,15 +13,33 @@ export class AdminManageUsersComponent implements OnInit {
   allUsers;
 
   constructor(private router: Router,
-              private userAuthentication: UserServiceClient) { }
+              private userAuthentication: UserServiceClient) {
+  }
 
   ngOnInit() {
     this.userAuthentication.findAllUsers().then(res => {
-      this.allUsers = res;
-    }).catch(error => window.alert('Unable to Find all Users'));
+      if (res.message !== undefined) {
+        if (res.message === 'Not a admin user') {
+          window.alert(res.message);
+          this.router.navigate(['home']);
+        } else {
+          window.alert(res.message);
+          this.router.navigate(['login']);
+        }
+      } else {
+        this.allUsers = res;
+      }
+    });
   }
 
   deleteUser(userId) {
-
+    this.userAuthentication.deleteUser(userId).then(res => {
+      window.alert('User Deleted Successfully');
+      this.userAuthentication.findAllUsers().then(response => {
+        this.allUsers = response;
+      }).catch(error => window.alert('Unable to Find all Users'));
+    }).catch(error => {
+        window.alert('Unable to delete user successfully');
+    });
   }
 }

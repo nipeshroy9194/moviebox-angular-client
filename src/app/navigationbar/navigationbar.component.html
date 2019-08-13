@@ -28,10 +28,12 @@
       <li class="nav-item"  *ngIf="userAuthentication.user !== null" [ngClass]="{'active': this.router.url.includes('/profile')}">
         <a (click)= gotoProfile(userAuthentication.user) class="nav-link" routerLinkActive="active-link">My Account</a>
       </li>
-      <li class="nav-item"  *ngIf="userAuthentication.user !== null && userAuthentication.user.type === 'ADMIN'">
+      <li class="nav-item" *ngIf="userAuthentication.user !== null && userAuthentication.user.type === 'ADMIN'"
+          [ngClass]="{'active': this.router.url === '/users'}">
         <a (click)= adminManageUsers() class="nav-link" routerLinkActive="active-link">Manage Users</a>
       </li>
-      <li class="nav-item"  *ngIf="userAuthentication.user !== null && userAuthentication.user.type === 'USER'">
+      <li class="nav-item"  *ngIf="userAuthentication.user !== null && userAuthentication.user.type === 'USER'"
+          [ngClass]="{'active': this.router.url === '/cart'}">
         <a (click)= gotoCart() class="nav-link" routerLinkActive="active-link">Cart</a>
       </li>
       <li class="nav-item"  *ngIf="userAuthentication.user !== null">

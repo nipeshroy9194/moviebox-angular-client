@@ -9,9 +9,10 @@ export class AuthGuardServiceClient implements CanActivate {
               private authService: UserServiceClient) {}
 
   canActivate() {
-    if (this.authService.user) {
+    if (this.authService.user.type === 'ADMIN') {
       return true;
     } else {
+      window.alert('Operation can only be performed by admin');
       this.router.navigate(['home']);
       return false;
     }

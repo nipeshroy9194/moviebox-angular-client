@@ -48,7 +48,6 @@ export class RegisterComponent implements OnInit {
     };
 
     this.userAuthentication.createUser(newUser).then(res => {
-      this.userAuthentication.user = res;
       this.router.navigate(['login']);
       window.alert('User Registered Successfully');
     });
