@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {AppGlobals} from './AppGlobals';
-@Injectable()
+
+@Injectable({
+  providedIn: 'root',
+})
 export class MovieServiceClient {
   constructor(private global: AppGlobals) {
   }

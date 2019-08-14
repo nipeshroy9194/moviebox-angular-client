@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AppGlobals} from './AppGlobals';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class UserServiceClient {
   user = null;
 
