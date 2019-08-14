@@ -17,9 +17,10 @@ export class MovieGridComponent implements OnInit {
   }
 
   searchParam: string;
-  movies: [];
+  movies = [];
 
   ngOnInit() {
+    this.movies = [];
     this.activatedRoute.paramMap.subscribe(params => {
       this.searchParam = params.get('searchParam');
       if (this.searchParam !== null) {
