@@ -11,10 +11,10 @@ import {UserServiceClient} from '../services/UserServiceClient';
 export class PopularMoviesComponent implements OnInit {
   popularMovies = [];
 
-  constructor(private router: Router,
-              private service: MovieServiceClient,
-              private activatedRoute: ActivatedRoute,
-              private userAuthentication: UserServiceClient) {
+  constructor(public router: Router,
+              public service: MovieServiceClient,
+              public activatedRoute: ActivatedRoute,
+              public userAuthentication: UserServiceClient) {
   }
 
   ngOnInit() {

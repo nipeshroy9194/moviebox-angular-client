@@ -12,8 +12,8 @@ export class AdminManageUsersComponent implements OnInit {
 
   allUsers;
 
-  constructor(private router: Router,
-              private userAuthentication: UserServiceClient) {
+  constructor(public router: Router,
+              public userAuthentication: UserServiceClient) {
   }
 
   ngOnInit() {

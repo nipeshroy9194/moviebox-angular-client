@@ -11,11 +11,11 @@ import {UserServiceClient} from '../services/UserServiceClient';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  constructor(private router: Router,
-              private service: MovieServiceClient,
-              private activatedRoute: ActivatedRoute,
-              private embedService: EmbedVideoService,
-              private userAuthentication: UserServiceClient) {
+  constructor(public router: Router,
+              public service: MovieServiceClient,
+              public activatedRoute: ActivatedRoute,
+              public embedService: EmbedVideoService,
+              public userAuthentication: UserServiceClient) {
   }
 
   movieId: string;

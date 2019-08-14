@@ -11,8 +11,8 @@ export class NavigationbarComponent implements OnInit {
   navbarCollapsed = true;
   searchParam = '';
 
-  constructor(private router: Router,
-              private userAuthentication: UserServiceClient) { }
+  constructor(public router: Router,
+              public userAuthentication: UserServiceClient) { }
 
   ngOnInit() {
   }

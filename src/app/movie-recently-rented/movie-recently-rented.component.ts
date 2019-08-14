@@ -10,8 +10,8 @@ import {UserServiceClient} from '../services/UserServiceClient';
 })
 export class MovieRecentlyRentedComponent implements OnInit {
 
-  constructor(private router: Router,
-              private service: MovieServiceClient,
+  constructor(public router: Router,
+              public service: MovieServiceClient,
               public userAuthentication: UserServiceClient) {
   }
 

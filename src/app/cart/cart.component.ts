@@ -10,8 +10,8 @@ import {UserServiceClient} from '../services/UserServiceClient';
 export class CartComponent implements OnInit {
   cart = [];
 
-  constructor(private router: Router,
-              private userAuthentication: UserServiceClient) { }
+  constructor(public router: Router,
+              public userAuthentication: UserServiceClient) { }
 
   ngOnInit() {
     if (this.userAuthentication.user) {

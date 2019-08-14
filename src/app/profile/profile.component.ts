@@ -14,10 +14,10 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder,
-              private activatedRoute: ActivatedRoute,
-              private router: Router,
-              private userAuthentication: UserServiceClient) {
+  constructor(public formBuilder: FormBuilder,
+              public activatedRoute: ActivatedRoute,
+              public router: Router,
+              public userAuthentication: UserServiceClient) {
   }
 
   get formget() { return this.profileForm.controls; }
