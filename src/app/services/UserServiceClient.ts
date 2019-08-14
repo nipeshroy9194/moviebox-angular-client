@@ -62,4 +62,14 @@ export class UserServiceClient {
       method: 'DELETE',
       credentials: 'include',
     }).then(response => response.status, error => error.status)
+
+  addToCart = (userId, movieId) =>
+    fetch('http://localhost:3000/api/user/' + `${userId}` + '/cart', {
+      method: 'PUT',
+      body: JSON.stringify(movieId),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => response.status, error => error.status)
 }

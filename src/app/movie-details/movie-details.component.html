@@ -28,6 +28,13 @@
           <li>{{cast.name}}</li>
         </ul>
       </li>
+      <li *ngIf="movieDetails.videos.results.length !== 0" class="list-group-item list-group-item-success">
+        <h5>Trailer</h5>
+      </li>
+      <li class="list-group-item" *ngFor="let video of movieDetails.videos.results">
+        <div *ngIf="video.site === 'YouTube'"
+             [innerHtml]="embedYoutubeLink('https://www.youtube.com/embed/watch?v=' + video.key)"></div>
+      </li>
       <li class="list-group-item list-group-item-success">
         <h5>Plot</h5>
       </li>
@@ -85,13 +92,6 @@
         <ul *ngIf="movieDetails.spoken_languages.length !== 0">
           <li>{{languages.name}}</li>
         </ul>
-      </li>
-      <li *ngIf="movieDetails.videos.results.length !== 0" class="list-group-item list-group-item-success">
-        <h5>Trailer</h5>
-      </li>
-      <li class="list-group-item" *ngFor="let video of movieDetails.videos.results">
-        <div *ngIf="video.site === 'YouTube'"
-             [innerHtml]="embedYoutubeLink('https://www.youtube.com/embed/watch?v=' + video.key)"></div>
       </li>
     </div>
   </div>

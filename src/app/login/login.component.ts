@@ -40,8 +40,13 @@ export class LoginComponent implements OnInit {
     };
 
     this.userAuthentication.login(loginCredentials).then(res => {
-      this.userAuthentication.user = res;
-      this.router.navigate(['profile', this.userAuthentication.user.userId]);
+      if (res.message === undefined) {
+        this.userAuthentication.user = res;
+        this.router.navigate(['profile', this.userAuthentication.user.userId]);
+      } else {
+        window.alert(res.message);
+        this.loginForm.reset();
+      }
     }).catch(error => {
       window.alert('Invalid username/password');
       this.loginForm.reset();

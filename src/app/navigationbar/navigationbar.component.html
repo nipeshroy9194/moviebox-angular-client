@@ -34,7 +34,10 @@
       </li>
       <li class="nav-item"  *ngIf="userAuthentication.user !== null && userAuthentication.user.type === 'USER'"
           [ngClass]="{'active': this.router.url === '/cart'}">
-        <a (click)= gotoCart() class="nav-link" routerLinkActive="active-link">Cart</a>
+        <a (click)= gotoCart() class="nav-link" routerLinkActive="active-link">
+<!--          <i data-count="2" class="glyphicon glyphicon-shopping-cart notification-icon">Cart</i>-->
+          Cart
+        </a>
       </li>
       <li class="nav-item"  *ngIf="userAuthentication.user !== null">
         <a (click)= userLogout() class="nav-link" routerLinkActive="active-link">Log Out</a>

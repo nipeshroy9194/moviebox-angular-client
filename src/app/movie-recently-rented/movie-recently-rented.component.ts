@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {MovieServiceClient} from '../services/MovieServiceClient';
+import {UserServiceClient} from '../services/UserServiceClient';
 
 @Component({
   selector: 'app-movie-recently-rented',
@@ -9,7 +10,9 @@ import {MovieServiceClient} from '../services/MovieServiceClient';
 })
 export class MovieRecentlyRentedComponent implements OnInit {
 
-  constructor(private router: Router, private service: MovieServiceClient) { }
+  constructor(private router: Router,
+              private service: MovieServiceClient,
+              private userAuthentication: UserServiceClient) { }
 
   recentlyRentedMovies;
 
@@ -26,5 +29,18 @@ export class MovieRecentlyRentedComponent implements OnInit {
 
   showDetails(movieId) {
     this.router.navigate(['details', movieId]);
+  }
+
+  addToCart(movie) {
+    const movieId = {
+      movieId: movie.id
+    };
+    this.userAuthentication.addToCart(this.userAuthentication.user._id, movieId).then(res => {
+      this.userAuthentication.findUserById(this.userAuthentication.user._id).then(response => {
+        this.userAuthentication.user = response;
+        window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
+      });
+      window.alert('Movie Added Successfully to Cart');
+    });
   }
 }

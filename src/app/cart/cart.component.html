@@ -1,0 +1,47 @@
+<div *ngIf="cart.length !== 0" class="container-fluid">
+  <div class="row">
+    <div class="col-xs-9 col-lg-9 left">
+      <li *ngIf="cart.length !== 0" class="list-group-item list-group-item-success">
+        <h6>Items in the cart</h6>
+      </li>
+      <ul *ngIf="cart.length !== 0" class="list-group">
+        <li class="list-group-item" *ngFor="let item of cart">
+          <ul>
+            <label>Movie ID</label>
+            <h6>{{item}}</h6>
+            <label class="btn btn-success btn-md" (click)="deleteItem(item)">
+              Delete Item</label>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="col-xs-3 col-lg-3 right">
+      <li *ngIf="cart.length !== 0" class="list-group-item list-group-item-success">
+        <h6>Proceed To Checkout</h6>
+      </li>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h6>Subtotal ({{cart.length}} items)</h6>
+          <h6>Total : {{cart.length * 5.99}}</h6>
+        </li>
+        <li class="list-group-item">
+          <button class="btn btn-sm btn-success form-control">Add More Items to Cart</button>
+        </li>
+        <li class="list-group-item">
+          <button class="btn btn-sm btn-success form-control">Checkout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<section *ngIf="cart.length === 0">
+  <div id="bg-caption">
+    <div class="container">
+      <i class="fa fa-shopping-cart fa-5x"></i>
+      <h2 class="text-center">Your Cart Is Empty</h2>
+      <button class="form-control btn-success btn-lg" (click)="returnHome()">
+        Add Items to Cart
+      </button>
+    </div>
+  </div>
+</section>

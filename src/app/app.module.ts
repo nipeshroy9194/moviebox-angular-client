@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { SafePipe } from './safe.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { EmbedVideo } from 'ngx-embed-video';
 import { ShowMoviesComponent } from './show-movies/show-movies.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { ShowMoviesComponent } from './show-movies/show-movies.component';
     AdminManageUsersComponent,
     SafePipe,
     ShowMoviesComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { ShowMoviesComponent } from './show-movies/show-movies.component';
     ReactiveFormsModule,
     ShowHidePasswordModule,
     HttpClientModule,
-    EmbedVideo
+    EmbedVideo,
+    FontAwesomeModule
   ],
   providers: [MovieServiceClient, UserServiceClient, AuthGuardServiceClient],
   bootstrap: [AppComponent]

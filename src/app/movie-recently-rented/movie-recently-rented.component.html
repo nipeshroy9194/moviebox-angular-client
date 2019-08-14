@@ -5,7 +5,7 @@
   <div *ngFor="let movie of recentlyRentedMovies" class="col-sm-12 col-md-4 col-lg-2 d-flex align-items-stretch">
     <div class="card custom-card">
       <div class="card-header">
-        <button class="btn btn-sm btn-success" (click)="addToCart()">Rent Now - 5.99$</button>
+        <button class="btn btn-sm btn-success" (click)="addToCart(movie)">Rent Now - 5.99$</button>
       </div>
       <img class="card-img-top image img-fluid" [src]="'http://image.tmdb.org/t/p/w342//' + movie.poster_path" (error)="brokenImage($event)"/>
       <div class="card-body middle">

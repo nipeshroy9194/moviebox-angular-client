@@ -48,4 +48,8 @@ export class NavigationbarComponent implements OnInit {
   adminManageUsers() {
     this.router.navigate(['users']);
   }
+
+  gotoCart() {
+    this.router.navigate(['cart']);
+  }
 }

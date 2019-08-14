@@ -35,11 +35,23 @@ export class ProfileComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       this.userId = params.get('userId');
       this.userAuthentication.findUserById(this.userId).then(response => {
-        this.userAuthentication.user = response;
-        window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
-        this.currentUser = response;
-        this.formset(this.currentUser);
-      });
+        if (response.message === undefined) {
+          this.userAuthentication.user = response;
+          window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
+          this.currentUser = response;
+          this.formset(this.currentUser);
+        } else {
+          window.alert(response.message);
+          this.userAuthentication.user = null;
+          window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
+        }
+      }).catch(error => {
+          window.alert('Service Unavailable : 503');
+          this.userAuthentication.user = null;
+          window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
+          this.router.navigate(['home']);
+        }
+      );
     });
     this.profileForm = this.formBuilder.group({
       username: ['', Validators.required],
