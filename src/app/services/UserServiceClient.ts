@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
+import {AppGlobals} from './AppGlobals';
 
 @Injectable()
 export class UserServiceClient {
   user = null;
 
-  constructor() {
+  constructor(private global: AppGlobals) {
     this.user = JSON.parse(window.localStorage.getItem('user'));
   }
 
   login = (loginCredentials) =>
-    fetch(' http://localhost:3000/api/user-login', {
+    fetch(`${this.global.baseNodeUrl}` + 'api/user-login', {
       method: 'POST',
       body: JSON.stringify(loginCredentials),
       credentials: 'include',
@@ -19,21 +20,21 @@ export class UserServiceClient {
     }).then(response => response.json(), error => error.status)
 
   findUserById = (userId) =>
-    fetch('http://localhost:3000/api/user/' + `${userId}`,
+    fetch(`${this.global.baseNodeUrl}` + 'api/user/' + `${userId}`,
       {
         credentials: 'include'
       })
       .then(response => response.json(), error => error.status)
 
   userLogout = () =>
-    fetch('http://localhost:3000/api/user-logout',
+    fetch(`${this.global.baseNodeUrl}` + 'api/user-logout',
       {
         credentials: 'include'
       })
       .then(response => response.status, error => error.status)
 
   updateUser = (userId, updatedUser) =>
-    fetch('http://localhost:3000/api/user/' + `${userId}`, {
+    fetch(`${this.global.baseNodeUrl}` + 'api/user/' + `${userId}`, {
       method: 'PUT',
       body: JSON.stringify(updatedUser),
       credentials: 'include',
@@ -43,7 +44,7 @@ export class UserServiceClient {
     }).then(response => response.status, error => error.status)
 
   createUser = (newUser) =>
-    fetch('http://localhost:3000/api/users', {
+    fetch(`${this.global.baseNodeUrl}` + 'api/users', {
       method: 'POST',
       body: JSON.stringify(newUser),
       credentials: 'include',
@@ -53,18 +54,18 @@ export class UserServiceClient {
     }).then(response => response.json(), error => error.status)
 
   findAllUsers = () =>
-    fetch('http://localhost:3000/api/users', {
+    fetch(`${this.global.baseNodeUrl}` + 'api/users', {
       credentials: 'include',
     }).then(response => response.json(), error => error.status)
 
   deleteUser = (userId) =>
-    fetch('http://localhost:3000/api/user/' + `${userId}`, {
+    fetch(`${this.global.baseNodeUrl}` + 'api/user/' + `${userId}`, {
       method: 'DELETE',
       credentials: 'include',
     }).then(response => response.status, error => error.status)
 
   addToCart = (userId, movieId) =>
-    fetch('http://localhost:3000/api/user/' + `${userId}` + '/cart', {
+    fetch(`${this.global.baseNodeUrl}` + 'api/user/' + `${userId}` + '/cart', {
       method: 'PUT',
       body: JSON.stringify(movieId),
       credentials: 'include',
@@ -72,4 +73,22 @@ export class UserServiceClient {
         'content-type': 'application/json'
       }
     }).then(response => response.status, error => error.status)
+
+  deleteFromCart = (userId, movieId) =>
+    fetch(`${this.global.baseNodeUrl}` + 'api/user/' + `${userId}` + '/cart/' + `${movieId}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    }).then(response => response.status, error => error.status)
+
+  deleteAllFromCart = (userId) =>
+    fetch(`${this.global.baseNodeUrl}` + 'api/user/' + `${userId}` + '/cart', {
+      method: 'DELETE',
+      credentials: 'include',
+    }).then(response => response.status, error => error.status)
+
+  checkout = (userId) =>
+    fetch(`${this.global.baseNodeUrl}` + 'api/user/' + `${userId}` + '/checkout', {
+      credentials: 'include',
+    }).then(response => response.status, error => error.status)
+
 }

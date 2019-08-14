@@ -1,41 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MovieServiceClient} from '../services/MovieServiceClient';
-import {EmbedVideoService} from 'ngx-embed-video';
 import {UserServiceClient} from '../services/UserServiceClient';
 
 @Component({
-  selector: 'app-movie-details',
-  templateUrl: './movie-details.component.html',
-  styleUrls: ['./movie-details.component.css']
+  selector: 'app-upcoming-movies',
+  templateUrl: './upcoming-movies.component.html',
+  styleUrls: ['./upcoming-movies.component.css']
 })
-export class MovieDetailsComponent implements OnInit {
+export class UpcomingMoviesComponent implements OnInit {
+
+  upcomingMovies = [];
 
   constructor(private router: Router,
               private service: MovieServiceClient,
               private activatedRoute: ActivatedRoute,
-              private embedService: EmbedVideoService,
               private userAuthentication: UserServiceClient) {
   }
 
-  movieId: string;
-  movieDetails;
-
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(params => {
-      this.movieId = params.get('movieId');
-      console.log(this.movieId);
-      if (this.movieId !== null) {
-        this.service.getMovieDetails(params.get('movieId')).
-        then(movieDetails => this.movieDetails = movieDetails);
-      }
+      this.service.getNewReleases()
+        .then(movies => this.upcomingMovies = movies.results)
+        .catch(error => window.alert('The TMDB API is currently down'));
     });
   }
 
-  embedYoutubeLink(youTubeLink) {
-    const temp = this.embedService.embed(youTubeLink);
-    console.log(temp);
-    return temp;
+  showDetails(movieId) {
+    this.router.navigate(['details', movieId]);
+  }
+
+  brokenImage(event) {
+    event.target.src = '../assets/images/no_image_available.jpeg';
   }
 
   addToCart(movie) {
@@ -59,9 +55,5 @@ export class MovieDetailsComponent implements OnInit {
     } else {
       window.alert('You need to Login to Add a Movie to Cart');
     }
-  }
-
-  brokenImage(event) {
-    event.target.src = '../assets/images/no_image_available.jpeg';
   }
 }

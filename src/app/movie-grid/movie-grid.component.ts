@@ -13,7 +13,8 @@ export class MovieGridComponent implements OnInit {
   constructor(private router: Router,
               private service: MovieServiceClient,
               private activatedRoute: ActivatedRoute,
-              private userAuthentication: UserServiceClient) { }
+              private userAuthentication: UserServiceClient) {
+  }
 
   searchParam: string;
   movies: [];
@@ -38,15 +39,25 @@ export class MovieGridComponent implements OnInit {
   }
 
   addToCart(movie) {
-    const movieId = {
-      movieId: movie.id
-    };
-    this.userAuthentication.addToCart(this.userAuthentication.user._id, movieId).then(res => {
-      this.userAuthentication.findUserById(this.userAuthentication.user._id).then(response => {
-        this.userAuthentication.user = response;
-        window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
+    if (this.userAuthentication.user !== null) {
+      const movieId = {
+        movieId: movie.id,
+        name: movie.title,
+        posterUrl: movie.poster_path
+      };
+      this.userAuthentication.addToCart(this.userAuthentication.user._id, movieId).then(res => {
+        if (res.message === undefined) {
+          this.userAuthentication.findUserById(this.userAuthentication.user._id).then(response => {
+            this.userAuthentication.user = response;
+            window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
+          });
+          window.alert('Movie Added Successfully to Cart');
+        } else {
+          window.alert(res.message);
+        }
       });
-      window.alert('Movie Added Successfully to Cart');
-    });
+    } else {
+      window.alert('You need to Login to Add a Movie to Cart');
+    }
   }
 }

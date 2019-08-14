@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MovieServiceClient} from '../services/MovieServiceClient';
 import {UserServiceClient} from '../services/UserServiceClient';
@@ -12,15 +12,25 @@ export class MovieRecentlyRentedComponent implements OnInit {
 
   constructor(private router: Router,
               private service: MovieServiceClient,
-              private userAuthentication: UserServiceClient) { }
+              private userAuthentication: UserServiceClient) {
+  }
 
-  recentlyRentedMovies;
+  recentlyRentedMovies: any = [];
 
   ngOnInit() {
+    this.recentlyRentedMovies = [];
     // Replace this to get info of the Recently rented movieId's from the database
-    this.service.getSearchMovies('superman')
-      .then(movies => this.recentlyRentedMovies = movies.results)
-      .catch(error => window.alert('The TMDB API is currently down'));
+    if (this.userAuthentication.user !== null) {
+      this.service.getRecentlyRented(this.userAuthentication.user._id)
+        .then(movies => {
+          if (movies.message === undefined) {
+            this.recentlyRentedMovies = movies;
+          } else {
+            this.recentlyRentedMovies = [];
+          }
+        })
+        .catch(error => window.alert('The TMDB API is currently down'));
+    }
   }
 
   brokenImage(event) {
@@ -32,15 +42,25 @@ export class MovieRecentlyRentedComponent implements OnInit {
   }
 
   addToCart(movie) {
-    const movieId = {
-      movieId: movie.id
-    };
-    this.userAuthentication.addToCart(this.userAuthentication.user._id, movieId).then(res => {
-      this.userAuthentication.findUserById(this.userAuthentication.user._id).then(response => {
-        this.userAuthentication.user = response;
-        window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
+    if (this.userAuthentication.user !== null) {
+      const movieId = {
+        movieId: movie.id,
+        name: movie.title,
+        posterUrl: movie.poster_path
+      };
+      this.userAuthentication.addToCart(this.userAuthentication.user._id, movieId).then(res => {
+        if (res.message === undefined) {
+          this.userAuthentication.findUserById(this.userAuthentication.user._id).then(response => {
+            this.userAuthentication.user = response;
+            window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
+          });
+          window.alert('Movie Added Successfully to Cart');
+        } else {
+          window.alert(res.message);
+        }
       });
-      window.alert('Movie Added Successfully to Cart');
-    });
+    } else {
+      window.alert('You need to Login to Add a Movie to Cart');
+    }
   }
 }

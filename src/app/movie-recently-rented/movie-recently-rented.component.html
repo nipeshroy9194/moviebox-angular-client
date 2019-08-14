@@ -1,23 +1,23 @@
-<div class="row container-fluid">
-  <h4>Recently Rented Movies</h4>
+<div *ngIf="recentlyRentedMovies.length !== 0
+      && userAuthentication.user !== null" class="container-fluid row">
+  <br/>
+  <h4>Your Recently Rented Movies</h4>
 </div>
 <div class="card-group">
   <div *ngFor="let movie of recentlyRentedMovies" class="col-sm-12 col-md-4 col-lg-2 d-flex align-items-stretch">
     <div class="card custom-card">
       <div class="card-header">
-        <button class="btn btn-sm btn-success" (click)="addToCart(movie)">Rent Now - 5.99$</button>
+        <button class="btn btn-sm btn-success" (click)="addToCart(movie)">Watch Now</button>
       </div>
-      <img class="card-img-top image img-fluid" [src]="'http://image.tmdb.org/t/p/w342//' + movie.poster_path" (error)="brokenImage($event)"/>
+      <img class="card-img-top image img-fluid" [src]="'http://image.tmdb.org/t/p/w342/' + movie.posterUrl"
+           (error)="brokenImage($event)"/>
       <div class="card-body middle">
         <h5 class="card-title">
-          {{movie.title}}
+          {{movie.name}}
         </h5>
-        <p class="card-text">
-          {{movie.release_date}}
-        </p>
       </div>
       <div class="card-footer">
-        <button class="btn btn-sm btn-success" (click)="showDetails(movie.id)">View Details</button>
+        <button class="btn btn-sm btn-success" (click)="showDetails(movie.movieId)">View Details</button>
       </div>
     </div>
   </div>

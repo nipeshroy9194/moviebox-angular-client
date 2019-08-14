@@ -24,6 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmbedVideo } from 'ngx-embed-video';
 import { ShowMoviesComponent } from './show-movies/show-movies.component';
 import { CartComponent } from './cart/cart.component';
+import { AppGlobals } from './services/AppGlobals';
+import { PopularMoviesComponent } from './popular-movies/popular-movies.component';
+import { UpcomingMoviesComponent } from './upcoming-movies/upcoming-movies.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,8 @@ import { CartComponent } from './cart/cart.component';
     SafePipe,
     ShowMoviesComponent,
     CartComponent,
+    PopularMoviesComponent,
+    UpcomingMoviesComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,7 @@ import { CartComponent } from './cart/cart.component';
     EmbedVideo,
     FontAwesomeModule
   ],
-  providers: [MovieServiceClient, UserServiceClient, AuthGuardServiceClient],
+  providers: [MovieServiceClient, UserServiceClient, AuthGuardServiceClient, AppGlobals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
