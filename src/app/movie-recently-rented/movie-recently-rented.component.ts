@@ -12,7 +12,7 @@ export class MovieRecentlyRentedComponent implements OnInit {
 
   constructor(private router: Router,
               private service: MovieServiceClient,
-              private userAuthentication: UserServiceClient) {
+              public userAuthentication: UserServiceClient) {
   }
 
   recentlyRentedMovies: any = [];
