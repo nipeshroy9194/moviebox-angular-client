@@ -7,7 +7,7 @@
   <div *ngFor="let movie of recentlyRentedMovies" class="col-sm-12 col-md-4 col-lg-2 d-flex align-items-stretch">
     <div class="card custom-card">
       <div class="card-header">
-        <button class="btn btn-sm btn-success" (click)="addToCart(movie)">Watch Now</button>
+        <button class="btn btn-sm btn-success">Watch Now</button>
       </div>
       <img class="card-img-top image img-fluid" [src]="'https://image.tmdb.org/t/p/w342/' + movie.posterUrl"
            (error)="brokenImage($event)"/>

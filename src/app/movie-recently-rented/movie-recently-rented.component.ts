@@ -40,27 +40,4 @@ export class MovieRecentlyRentedComponent implements OnInit {
   showDetails(movieId) {
     this.router.navigate(['details', movieId]);
   }
-
-  addToCart(movie) {
-    if (this.userAuthentication.user !== null) {
-      const movieId = {
-        movieId: movie.id,
-        name: movie.title,
-        posterUrl: movie.poster_path
-      };
-      this.userAuthentication.addToCart(this.userAuthentication.user._id, movieId).then(res => {
-        if (res.message === undefined) {
-          this.userAuthentication.findUserById(this.userAuthentication.user._id).then(response => {
-            this.userAuthentication.user = response;
-            window.localStorage.setItem('user', JSON.stringify(this.userAuthentication.user));
-          });
-          window.alert('Movie Added Successfully to Cart');
-        } else {
-          window.alert(res.message);
-        }
-      });
-    } else {
-      window.alert('You need to Login to Add a Movie to Cart');
-    }
-  }
 }
