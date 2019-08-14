@@ -9,7 +9,7 @@
       <div class="card-header">
         <button class="btn btn-sm btn-success" (click)="addToCart(movie)">Watch Now</button>
       </div>
-      <img class="card-img-top image img-fluid" [src]="'http://image.tmdb.org/t/p/w342/' + movie.posterUrl"
+      <img class="card-img-top image img-fluid" [src]="'https://image.tmdb.org/t/p/w342/' + movie.posterUrl"
            (error)="brokenImage($event)"/>
       <div class="card-body middle">
         <h5 class="card-title">
